@@ -7,7 +7,7 @@ This tool is implemented to find manually the camera calibration parameters, wit
     $ sudo pip3 install -r requirements.txt
 
 ## How to run:
-$ python3 src/manual_calib.py input_image
+     $ python3 src/manual_calib.py input_image
 <p align="center">
      <img src="https://github.com/amiryanj/Manual-Camera-Calibration/blob/master/demo/0-Input.jpg" width="640"\>
 </p>
