@@ -1,8 +1,13 @@
 # Manual Camera Calibration
 This tool is implemented to find manually the camera calibration parameters, with a simple user interface that use keyboard keys to play with parameters and see the results online.
 
+# Installation
+$ git clone https://github.com/amiryanj/Manual-Camera-Calibration.git
+$ cd Manual-Camera-Calibration/
+$ sudo pip3 install -r requirements.txt
+
 # How to run:
-$python3 src/manual_calib.py input_image
+$ python3 src/manual_calib.py input_image
 
 ![oxford-circus-crossing](https://github.com/amiryanj/Manual-Camera-Calibration/blob/master/demo/0-Input.jpg)
 
