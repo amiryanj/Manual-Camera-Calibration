@@ -64,3 +64,6 @@ The results will be written in result.txt:
     > [3.43568009e-01 2.77262068e-03 2.53796170e+02]
     > [-2.42866914e-02  5.12907954e-02  2.84175103e+02]
     > [ 2.89476256e-04 -3.64715654e-04  1.00000000e+00]
+
+## Author
+This source code is developed and maintained by Javad Amirian. Please refer to [LICENSE](https://github.com/amiryanj/Manual-Camera-Calibration/blob/master/LICENSE) if you want to use or distribute this project.
