@@ -1,10 +1,14 @@
+import sys
 import cv2
 import numpy as np
-from src.DEFINITIONS import *
+from DEFINITIONS import *
 
 
+if len(sys.argv) < 2:
+    print('Please enter URL for the input image')
 # Load image
-im = cv2.imread('/home/jamirian/Pictures/KTG_K2_resized.png')
+im = cv2.imread(sys.argv[1])
+
 # cv2.imshow('im', im)
 
 pnt_TL = [-50, 0]
@@ -245,7 +249,7 @@ while True:
     H2_out = cv2.warpPerspective(im, homog_and_affine, (im.shape[1], im.shape[0]),
                                  flags=cv2.INTER_LINEAR + cv2.WARP_INVERSE_MAP)
 
-    cv2.imshow('warped', H2_out)
+    cv2.imshow('Top View', H2_out)
     key = cv2.waitKeyEx()
 
     if key == MINUS_Key:
@@ -270,6 +274,11 @@ while True:
         break
 
 print('Perspective Transformation After Cropping = \n', H_Mat, '\n************************')
-
+with open("result.txt", "w") as f:
+    f.write('Distortion Params:\n')
+    f.write('[%f, %f]\n\n' %(k1, k2))
+    f.write('Perspective Transform:\n')
+    f.write("".join(map(str, H_Mat)))
+    f.close()
 exit(1)
 
