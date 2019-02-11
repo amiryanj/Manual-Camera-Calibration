@@ -279,6 +279,8 @@ with open("result.txt", "w") as f:
     f.write('[%f, %f]\n\n' %(k1, k2))
     f.write('Perspective Transform:\n')
     f.write("".join(map(str, H_Mat)))
+    f.write("\n")
+    f.flush()
     f.close()
 exit(1)
 
