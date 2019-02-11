@@ -8,8 +8,9 @@ This tool is implemented to find manually the camera calibration parameters, wit
 
 ## How to run:
 $ python3 src/manual_calib.py input_image
-
-![oxford-circus-crossing](https://github.com/amiryanj/Manual-Camera-Calibration/blob/master/demo/0-Input.jpg)
+<p align="center">
+     <img src="https://github.com/amiryanj/Manual-Camera-Calibration/blob/master/demo/0-Input.jpg" width="640"\>
+</p>
 
 
 ## How to use it:
@@ -21,7 +22,10 @@ The calibration is divided into 3 steps:
 - II. Use Right/Left arrow keys to Increase/Decrease k2 parameter (second-order radial distortion) 
 - III. Use +/- to change focal lenght, it will affect undistorting output
 - IV. Click two points on image and press Space Key to draw a straight line, you can use this straight line as a ground truth.
-![undistort](https://github.com/amiryanj/Manual-Camera-Calibration/blob/master/demo/1-undistort.png)
+
+<p align="center">
+     <img src="https://github.com/amiryanj/Manual-Camera-Calibration/blob/master/demo/1-undistort.png" width="640"\>
+</p>
 
 2. Draw an square on real world coordinates:
 The square coordinates should be clicked one by one, after each click press Enter to proceed;
@@ -31,21 +35,27 @@ The square coordinates should be clicked one by one, after each click press Ente
 - The 3rd click sets the Bottom Left corner.
 - The 4th click sets the Bottom Right corner.
 
-![draw-rect](https://github.com/amiryanj/Manual-Camera-Calibration/blob/master/demo/2-draw_rect.png)
+<p align="center">
+     <img src="https://github.com/amiryanj/Manual-Camera-Calibration/blob/master/demo/2-draw_rect.png" width="640"\>
+</p>
 
 Press Enter again to finish and see the top view image.
-![top-view](https://github.com/amiryanj/Manual-Camera-Calibration/blob/master/demo/3-top_view.png)
+<p align="center">
+     <img src="https://github.com/amiryanj/Manual-Camera-Calibration/blob/master/demo/3-top_view.png" width="640"\>
+</p>
 
 3. Crop the image: Try to find a good cropping for your transformation by:
 
 - I. Use arrow keys to displace the result image
 - II. Use +/- to zoom In/Out 
+<p align="center">
+     <img src="https://github.com/amiryanj/Manual-Camera-Calibration/blob/master/demo/4-output.png" width="640"\>
+</p>
 
-![output](https://github.com/amiryanj/Manual-Camera-Calibration/blob/master/demo/4-output.png)
 
-The results will be written in a text file:
-./result.txt
-
+The results will be written in result.txt:
+    
+    > $ cat ./result.txt
     > Distortion Params:
     > [0.000000, 0.000000]
     >
