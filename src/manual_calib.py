@@ -1,13 +1,15 @@
-import sys
+import os, sys
 import cv2
 import numpy as np
-from DEFINITIONS import *
-
+from src.DEFINITIONS import *
 
 if len(sys.argv) < 2:
     print('Please enter URL for the input image')
 # Load image
-im = cv2.imread(sys.argv[1])
+input_file = sys.argv[1]
+
+assert(os.path.isfile(input_file))
+im = cv2.imread(input_file)
 
 # cv2.imshow('im', im)
 
@@ -247,17 +249,17 @@ affineMat = np.eye(3, dtype=float)
 while True:
     homog_and_affine = np.matmul(H_Mat, affineMat)
     H2_out = cv2.warpPerspective(im, homog_and_affine, (im.shape[1], im.shape[0]),
-                                 flags=cv2.INTER_LINEAR + cv2.WARP_INVERSE_MAP)
+                                 cv2.INTER_LINEAR)
 
     cv2.imshow('Top View', H2_out)
     key = cv2.waitKeyEx()
 
     if key == MINUS_Key:
-        affineMat[0, 0] *= 1.05
-        affineMat[1, 1] *= 1.05
+        affineMat[0, 0] *= 1.03
+        affineMat[1, 1] *= 1.03
     elif key == PLUS_Key:
-        affineMat[0, 0] /= 1.05
-        affineMat[1, 1] /= 1.05
+        affineMat[0, 0] /= 1.03
+        affineMat[1, 1] /= 1.03
     if key == RIGHT_ARROW_KEY:
         affineMat[0, 2] -= 5
     if key == LEFT_ARROW_KEY:
@@ -266,6 +268,12 @@ while True:
         affineMat[1, 2] += 5
     if key == DOWN_ARROW_KEY:
         affineMat[1, 2] -= 5
+    if key == 's':
+        filename, file_extension = os.path.splitext(input_file)
+        output_file = filename + '_wrapped' + file_extension
+        print('Writing wrapped image into', output_file)
+        cv2.imwrite(output_file, H2_out)
+
 
     elif key == ESCAPE_KEY:
         break
@@ -273,8 +281,12 @@ while True:
         H_Mat = homog_and_affine
         break
 
+filename, file_extension = os.path.splitext(input_file)
+output_file = filename + '_camparams.npz'
+np.savez(output_file, H=H_Mat, distCoeffs=np.array(np.array([k1, k2, 0, 0, 0])), camMatrix=calcCamMatrix(f, im_size=im.shape))
+
 print('Perspective Transformation After Cropping = \n', H_Mat, '\n************************')
-with open("result.txt", "w") as f:
+with open(filename + "_camparams_details.txt", "w") as f:
     f.write('Distortion Params:\n')
     f.write('[%f, %f]\n\n' %(k1, k2))
     f.write('Perspective Transform:\n')
@@ -282,5 +294,4 @@ with open("result.txt", "w") as f:
     f.write("\n")
     f.flush()
     f.close()
-exit(1)
 
